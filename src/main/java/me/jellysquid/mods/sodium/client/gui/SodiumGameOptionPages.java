@@ -122,6 +122,14 @@ public class SodiumGameOptionPages {
                         .setControl(TickBoxControl::new)
                         .setBinding(new VanillaBooleanOptionBinding(Option.VIEW_BOBBING))
                         .build())
+                .add(OptionImpl.createBuilder(int.class, vanillaOpts)
+                        .setName("Distortion Effects")
+                        .setTooltip("Controls the strength of distortion effects. At lower values, a green vignette effect will be rendered " +
+                                "on the player's view to replace the distortion effect. Players who suffer from motion sickness can benefit " +
+                                "from setting this to 0.")
+                        .setControl(option -> new SliderControl(option, 0, 100, 1, ControlValueFormatter.percentage()))
+                        .setBinding((opts, value) -> opts.distortionEffectScale = value / 100.0F, opts -> Math.round(opts.distortionEffectScale * 100.0F))
+                        .build())
                 .add(OptionImpl.createBuilder(AttackIndicator.class, vanillaOpts)
                         .setName("Attack Indicator")
                         .setTooltip("Controls where the Attack Indicator is displayed on screen.")
