@@ -130,6 +130,13 @@ public class SodiumGameOptionPages {
                         .setControl(option -> new SliderControl(option, 0, 100, 1, ControlValueFormatter.percentage()))
                         .setBinding((opts, value) -> opts.distortionEffectScale = value / 100.0F, opts -> Math.round(opts.distortionEffectScale * 100.0F))
                         .build())
+                .add(OptionImpl.createBuilder(int.class, vanillaOpts)
+                        .setName("FOV Effects")
+                        .setTooltip("Controls the strength of FOV effects used to indicate speed in the game. Players who suffer from motion " +
+                                "sickness can benefit from setting this to 0.")
+                        .setControl(option -> new SliderControl(option, 0, 100, 1, ControlValueFormatter.percentage()))
+                        .setBinding((opts, value) -> opts.fovEffectScale = value / 100.0F, opts -> Math.round(opts.fovEffectScale * 100.0F))
+                        .build())
                 .add(OptionImpl.createBuilder(AttackIndicator.class, vanillaOpts)
                         .setName("Attack Indicator")
                         .setTooltip("Controls where the Attack Indicator is displayed on screen.")
